@@ -1,2 +1,2 @@
 # Soccer
-soccer AI simulation with VS2015 + DirectX
+soccer AI simulation with VS2015 Windows API + DirectX
