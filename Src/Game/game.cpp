@@ -1,8 +1,6 @@
 
 #include "stdafx.h"
-#include "field.h"
-#include "player.h"
-#include "team.h"
+#include "match.h"
 
 
 using namespace graphic;
@@ -24,8 +22,7 @@ public:
 private:
 	graphic::cCube2 m_cube;
 	graphic::cModel m_model;
-	soccer::cField m_field;
-	soccer::cTeam m_team;
+	soccer::cMatch m_match;
 
 	bool m_dbgPrint;
 	string m_filePath;
@@ -93,8 +90,7 @@ bool cViewer::OnInit()
 	tm.SetScale(Vector3(scale, scale, scale));
 	m_model.SetTransform(tm);
 
-	m_field.Init(m_renderer);
-	m_team.Init(m_renderer);
+	m_match.Init(m_renderer);
 
 	return true;
 }
@@ -102,6 +98,7 @@ bool cViewer::OnInit()
 
 void cViewer::OnUpdate(const float elapseT)
 {
+	m_match.Update(elapseT);
 }
 
 
@@ -118,8 +115,7 @@ void cViewer::OnRender(const float elapseT)
 
 		//m_cube.Render(m_renderer, Matrix44::Identity);
 		//m_model.Render(m_renderer, Matrix44::Identity);
-		m_field.Render(m_renderer);
-		m_team.Render(m_renderer);
+		m_match.Render(m_renderer);
 		m_renderer.RenderFPS();
 
 		m_renderer.EndScene();

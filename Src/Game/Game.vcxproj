@@ -148,7 +148,9 @@
   <ItemGroup>
     <ClCompile Include="field.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="match.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="referee.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
@@ -173,7 +175,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="field.h" />
+    <ClInclude Include="match.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="referee.h" />
     <ClInclude Include="soccerdef.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="team.h" />
