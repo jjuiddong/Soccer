@@ -20,7 +20,7 @@ bool cReferee::Init()
 }
 
 
-bool cReferee::Move(const float elapseSeconds)
+bool cReferee::Update(const float deltaSeconds)
 {
 	return true;
 }

@@ -19,13 +19,14 @@ cPlayer::~cPlayer()
 bool cPlayer::Init(const sPlayerData &data)
 {
 	m_data = data;
+	
 	return true;
 }
 
 
-bool cPlayer::Move(const float elapseSeconds)
+bool cPlayer::Update(const float deltaSeconds)
 {
-	graphic::cCharacter::Move(elapseSeconds);
+	graphic::cCharacter::Update(deltaSeconds);
 
 	return true;
 }

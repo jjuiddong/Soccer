@@ -26,7 +26,7 @@ bool cMatch::Init(graphic::cRenderer &renderer)
 
 bool cMatch::Update(const float deltaSeconds)
 {
-	m_referee.Move(deltaSeconds);
+	m_referee.Update(deltaSeconds);
 	m_teams[0].Update(deltaSeconds);
 //	m_teams[1].Update(deltaSeconds);
 

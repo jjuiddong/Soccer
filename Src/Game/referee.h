@@ -11,7 +11,7 @@ namespace soccer
 		virtual ~cReferee();
 
 		bool Init();
-		bool Move(const float elapseSeconds) override;
+		bool Update(const float deltaSeconds) override;
 
 
 	public:

@@ -13,8 +13,8 @@ public:
 	virtual ~cViewer();
 
 	virtual bool OnInit() override;
-	virtual void OnUpdate(const float elapseT) override;
-	virtual void OnRender(const float elapseT) override;
+	virtual void OnUpdate(const float deltaSeconds) override;
+	virtual void OnRender(const float deltaSeconds) override;
 	virtual void OnShutdown() override;
 	virtual void MessageProc(UINT message, WPARAM wParam, LPARAM lParam) override;
 
@@ -56,6 +56,7 @@ cViewer::cViewer()
 cViewer::~cViewer()
 {
 	graphic::ReleaseRenderer();
+	ai::Clear();
 }
 
 
@@ -96,13 +97,14 @@ bool cViewer::OnInit()
 }
 
 
-void cViewer::OnUpdate(const float elapseT)
+void cViewer::OnUpdate(const float deltaSeconds)
 {
-	m_match.Update(elapseT);
+	ai::Loop(deltaSeconds);
+	m_match.Update(deltaSeconds);
 }
 
 
-void cViewer::OnRender(const float elapseT)
+void cViewer::OnRender(const float deltaSeconds)
 {
 	if (m_renderer.ClearScene())
 	{

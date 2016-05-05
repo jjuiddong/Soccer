@@ -13,7 +13,7 @@ namespace soccer
 		virtual ~cPlayer();
 
 		bool Init(const sPlayerData &data);
-		virtual bool Move(const float elapseSeconds) override;
+		virtual bool Update(const float deltaSeconds) override;
 
 
 	public:

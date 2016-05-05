@@ -27,7 +27,35 @@ bool cTeam::Init(graphic::cRenderer &renderer)
 		Matrix44 tm;
 		tm.SetScale(Vector3(scale, scale, scale));
 		p->SetTransform(tm);
+		p->Init({ POSITION::MF });
 		m_players.push_back(p);
+	}
+
+
+	Vector3 pos[] = {
+		Vector3(-10, 0, -10),
+		Vector3(10, 0, -10),
+
+		Vector3(-20, 0, -20),
+		Vector3(-5, 0, -20),
+		Vector3(5, 0, -20),
+		Vector3(20, 0, -20),
+
+		Vector3(-20, 0, -30),
+		Vector3(-5, 0, -30),
+		Vector3(5, 0, -30),
+		Vector3(20, 0, -30),
+
+		Vector3(0, 0, -60),
+	};
+
+	for (int i = 0; i < 11; ++i)
+	{
+		ai::cMove *p = new ai::cMove();
+		p->m_speed = 5.f;
+		p->Init(pos[i]);
+		m_players[i]->m_ai.PushAction(p);
+		m_players[i]->m_ai.StartAction();
 	}
 
 	return true;
@@ -38,7 +66,7 @@ bool cTeam::Update(const float deltaSeconds)
 {
 	for each (auto &p in m_players)
 	{
-		p->Move(deltaSeconds);
+		p->Update(deltaSeconds);
 	}
 
 	return true;
