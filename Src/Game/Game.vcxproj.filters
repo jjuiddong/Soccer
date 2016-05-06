@@ -8,6 +8,7 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="referee.cpp" />
     <ClCompile Include="match.cpp" />
+    <ClCompile Include="ball.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -17,5 +18,6 @@
     <ClInclude Include="soccerdef.h" />
     <ClInclude Include="referee.h" />
     <ClInclude Include="match.h" />
+    <ClInclude Include="ball.h" />
   </ItemGroup>
 </Project>
