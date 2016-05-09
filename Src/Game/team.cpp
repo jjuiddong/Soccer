@@ -7,6 +7,7 @@ using namespace soccer;
 
 
 cTeam::cTeam()
+	: ai::cActor()
 {
 }
 
