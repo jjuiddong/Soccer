@@ -29,35 +29,44 @@ bool cTeam::Init(graphic::cRenderer &renderer)
 		tm.SetScale(Vector3(scale, scale, scale));
 		p->SetTransform(tm);
 		p->Init({ POSITION::MF });
+
+		cPlayerActionMain *mainAction = new cPlayerActionMain();
+		p->m_ai.PushAction(mainAction);		
+
+		AddActor(&p->m_ai);
 		m_players.push_back(p);
 	}
 
 
-	Vector3 pos[] = {
-		Vector3(-10, 0, -10),
-		Vector3(10, 0, -10),
+// 	Vector3 pos[] = {
+// 		Vector3(-10, 0, -10),
+// 		Vector3(10, 0, -10),
+// 
+// 		Vector3(-20, 0, -20),
+// 		Vector3(-5, 0, -20),
+// 		Vector3(5, 0, -20),
+// 		Vector3(20, 0, -20),
+// 
+// 		Vector3(-20, 0, -30),
+// 		Vector3(-5, 0, -30),
+// 		Vector3(5, 0, -30),
+// 		Vector3(20, 0, -30),
+// 
+// 		Vector3(0, 0, -60),
+// 	};
+// 
+// 	for (int i = 0; i < 11; ++i)
+// 	{
+// 		ai::cMove *p = new ai::cMove();
+// 		p->m_speed = 5.f;
+// 		p->Init(pos[i]);
+// 		m_players[i]->m_ai.PushAction(p);
+// 		m_players[i]->m_ai.StartAction();
+// 	}
 
-		Vector3(-20, 0, -20),
-		Vector3(-5, 0, -20),
-		Vector3(5, 0, -20),
-		Vector3(20, 0, -20),
-
-		Vector3(-20, 0, -30),
-		Vector3(-5, 0, -30),
-		Vector3(5, 0, -30),
-		Vector3(20, 0, -30),
-
-		Vector3(0, 0, -60),
-	};
-
-	for (int i = 0; i < 11; ++i)
-	{
-		ai::cMove *p = new ai::cMove();
-		p->m_speed = 5.f;
-		p->Init(pos[i]);
-		m_players[i]->m_ai.PushAction(p);
-		m_players[i]->m_ai.StartAction();
-	}
+	cTeamKickoffAction *kickoffAction = new cTeamKickoffAction();
+	PushAction(kickoffAction);
+	StartAction();
 
 	return true;
 }
@@ -65,6 +74,8 @@ bool cTeam::Init(graphic::cRenderer &renderer)
 
 bool cTeam::Update(const float deltaSeconds)
 {
+	__super::Update(deltaSeconds);
+
 	for each (auto &p in m_players)
 	{
 		p->Update(deltaSeconds);

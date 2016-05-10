@@ -9,6 +9,15 @@
     <ClCompile Include="referee.cpp" />
     <ClCompile Include="match.cpp" />
     <ClCompile Include="ball.cpp" />
+    <ClCompile Include="actionTeam\teamkickoffaction.cpp">
+      <Filter>actionTeam</Filter>
+    </ClCompile>
+    <ClCompile Include="actionPlayer\playeractionmain.cpp">
+      <Filter>actionPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="actionPlayer\blankaction.cpp">
+      <Filter>actionPlayer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -19,5 +28,23 @@
     <ClInclude Include="referee.h" />
     <ClInclude Include="match.h" />
     <ClInclude Include="ball.h" />
+    <ClInclude Include="actionTeam\teamkickoffaction.h">
+      <Filter>actionTeam</Filter>
+    </ClInclude>
+    <ClInclude Include="soccerai.h" />
+    <ClInclude Include="actionPlayer\playeractionmain.h">
+      <Filter>actionPlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="actionPlayer\blankaction.h">
+      <Filter>actionPlayer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="actionTeam">
+      <UniqueIdentifier>{aa8bfcfc-cf2e-499e-b36a-eea192889ce7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="actionPlayer">
+      <UniqueIdentifier>{ef0b5f91-40f9-4f27-9214-2593480212c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

@@ -147,6 +147,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="actionPlayer\blankaction.cpp" />
+    <ClCompile Include="actionPlayer\playeractionmain.cpp" />
+    <ClCompile Include="actionTeam\teamkickoffaction.cpp" />
     <ClCompile Include="ball.cpp" />
     <ClCompile Include="field.cpp" />
     <ClCompile Include="game.cpp" />
@@ -176,11 +179,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="actionPlayer\blankaction.h" />
+    <ClInclude Include="actionPlayer\playeractionmain.h" />
+    <ClInclude Include="actionTeam\teamkickoffaction.h" />
     <ClInclude Include="ball.h" />
     <ClInclude Include="field.h" />
     <ClInclude Include="match.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="referee.h" />
+    <ClInclude Include="soccerai.h" />
     <ClInclude Include="soccerdef.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="team.h" />

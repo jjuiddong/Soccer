@@ -11,3 +11,4 @@
 #include "../../../Common/Framework/framework.h"
 
 #include "soccerdef.h"
+#include "soccerai.h"
