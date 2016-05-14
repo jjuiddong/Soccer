@@ -2,12 +2,14 @@
 #include "stdafx.h"
 #include "team.h"
 #include "player.h"
+#include "actionTeam/teamkickoffaction.h"
 
 using namespace soccer;
 
 
 cTeam::cTeam()
-	: ai::cActor()
+	: ai::cActor<cTeam>(this)
+	, ai::iActorInterface<cTeam>(this)
 {
 }
 
@@ -23,16 +25,7 @@ bool cTeam::Init(graphic::cRenderer &renderer)
 	for (int i = 0; i < 11; ++i)
 	{
 		cPlayer *p = new cPlayer();
-		p->Create(renderer, "cube.dat");
-		const float scale = 0.1f;
-		Matrix44 tm;
-		tm.SetScale(Vector3(scale, scale, scale));
-		p->SetTransform(tm);
-		p->Init({ POSITION::MF });
-
-		cPlayerActionMain *mainAction = new cPlayerActionMain();
-		p->m_ai.PushAction(mainAction);		
-
+		p->Init(renderer, { POSITION::MF });
 		AddActor(&p->m_ai);
 		m_players.push_back(p);
 	}
@@ -64,9 +57,8 @@ bool cTeam::Init(graphic::cRenderer &renderer)
 // 		m_players[i]->m_ai.StartAction();
 // 	}
 
-	cTeamKickoffAction *kickoffAction = new cTeamKickoffAction();
-	PushAction(kickoffAction);
-	StartAction();
+ 	cTeamKickoffAction *kickoffAction = new cTeamKickoffAction(this);
+ 	PushAction(kickoffAction);
 
 	return true;
 }

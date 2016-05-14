@@ -27,9 +27,9 @@ namespace PLAYER_AI_MSG {
 
 
 // team
-#include "actionTeam/teamkickoffaction.h"
+//#include "actionTeam/teamkickoffaction.h"
 
 
 // player
-#include "actionPlayer/playeractionmain.h"
+//#include "actionPlayer/playeractionmain.h"
 

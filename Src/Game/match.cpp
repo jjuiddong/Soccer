@@ -16,7 +16,7 @@ cMatch::~cMatch()
 bool cMatch::Init(graphic::cRenderer &renderer)
 {
 	m_field.Init(renderer);
-	m_referee.Init();
+//	m_referee.Init();
 	m_teams[0].Init(renderer);
 //	m_teams[1].Init(renderer);
 	m_ball.Init(renderer);
@@ -27,7 +27,7 @@ bool cMatch::Init(graphic::cRenderer &renderer)
 
 bool cMatch::Update(const float deltaSeconds)
 {
-	m_referee.Update(deltaSeconds);
+//	m_referee.Update(deltaSeconds);
 	m_teams[0].Update(deltaSeconds);
 //	m_teams[1].Update(deltaSeconds);
 	m_ball.Update(deltaSeconds);

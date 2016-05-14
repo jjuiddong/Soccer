@@ -11,7 +11,8 @@ namespace soccer
 {
 	class cPlayer;
 
-	class cTeam : public ai::cActor
+	class cTeam : public ai::iActorInterface<cTeam>
+						, public ai::cActor<cTeam>
 	{
 	public:
 		cTeam();

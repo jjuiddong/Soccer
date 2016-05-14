@@ -238,3 +238,5 @@ _Pvt_Extensions
 Src/Game/errlog.txt
 *.db
 
+Src/Game.VC.db
+*.db

@@ -5,20 +5,18 @@
 //
 #pragma once
 
+#include "../team.h"
 
 namespace soccer
 {
 
-	class cTeamKickoffAction : public ai::cAction
+	class cTeamKickoffAction : public ai::cAction<cTeam>
 	{
 	public:
-		cTeamKickoffAction();
+		cTeamKickoffAction(ai::iActorInterface<cTeam> *agent);
 		virtual ~cTeamKickoffAction();
 
 		// override
-		virtual void Start(ai::cAction *prevAction) override;
-		virtual void Resume(ai::cAction *prevAction) override;
-		virtual void End() override;
 		virtual bool ActionThrough(const float deltaSeconds) override;
 		virtual bool ActionExecute(const float deltaSeconds) override;
 		virtual bool MessageProccess(const ai::sMsg &msg) override;

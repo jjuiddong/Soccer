@@ -6,31 +6,13 @@ using namespace ai;
 using namespace soccer;
 
 
-cBlankAction::cBlankAction()
+cBlankAction::cBlankAction(ai::iActorInterface<cPlayer> *agent)
+	: ai::cAction<cPlayer>(agent, "blankaction")
 {
 }
 
 cBlankAction::~cBlankAction()
 {
-}
-
-
-// override
-void cBlankAction::Start(ai::cAction *prevAction)
-{
-	__super::Start(prevAction);
-}
-
-
-void cBlankAction::Resume(ai::cAction *prevAction)
-{
-	__super::Resume(prevAction);
-}
-
-
-void cBlankAction::End()
-{
-	__super::End();
 }
 
 

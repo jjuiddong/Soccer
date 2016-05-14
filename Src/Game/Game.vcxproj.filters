@@ -4,39 +4,45 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="field.cpp" />
-    <ClCompile Include="team.cpp" />
-    <ClCompile Include="player.cpp" />
-    <ClCompile Include="referee.cpp" />
-    <ClCompile Include="match.cpp" />
     <ClCompile Include="ball.cpp" />
-    <ClCompile Include="actionTeam\teamkickoffaction.cpp">
-      <Filter>actionTeam</Filter>
+    <ClCompile Include="player.cpp" />
+    <ClCompile Include="team.cpp" />
+    <ClCompile Include="match.cpp" />
+    <ClCompile Include="referee.cpp" />
+    <ClCompile Include="actionPlayer\blankaction.cpp">
+      <Filter>actionPlayer</Filter>
     </ClCompile>
     <ClCompile Include="actionPlayer\playeractionmain.cpp">
       <Filter>actionPlayer</Filter>
     </ClCompile>
-    <ClCompile Include="actionPlayer\blankaction.cpp">
+    <ClCompile Include="actionPlayer\playerkickoffaction.cpp">
       <Filter>actionPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="actionTeam\teamkickoffaction.cpp">
+      <Filter>actionTeam</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="field.h" />
-    <ClInclude Include="team.h" />
-    <ClInclude Include="player.h" />
     <ClInclude Include="soccerdef.h" />
-    <ClInclude Include="referee.h" />
-    <ClInclude Include="match.h" />
     <ClInclude Include="ball.h" />
-    <ClInclude Include="actionTeam\teamkickoffaction.h">
-      <Filter>actionTeam</Filter>
-    </ClInclude>
     <ClInclude Include="soccerai.h" />
+    <ClInclude Include="player.h" />
+    <ClInclude Include="team.h" />
+    <ClInclude Include="match.h" />
+    <ClInclude Include="referee.h" />
+    <ClInclude Include="actionPlayer\blankaction.h">
+      <Filter>actionPlayer</Filter>
+    </ClInclude>
     <ClInclude Include="actionPlayer\playeractionmain.h">
       <Filter>actionPlayer</Filter>
     </ClInclude>
-    <ClInclude Include="actionPlayer\blankaction.h">
+    <ClInclude Include="actionPlayer\playerkickoffaction.h">
       <Filter>actionPlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="actionTeam\teamkickoffaction.h">
+      <Filter>actionTeam</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

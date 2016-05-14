@@ -5,7 +5,6 @@ using namespace soccer;
 
 
 cReferee::cReferee() 
-	: graphic::cCharacter()
 {
 }
 

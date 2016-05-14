@@ -5,20 +5,19 @@
 //
 #pragma once
 
+#include "../player.h"
+
 
 namespace soccer
 {
 
-	class cPlayerActionMain : public ai::cAction
+	class cPlayerActionMain : public ai::cAction<cPlayer>
 	{
 	public:
-		cPlayerActionMain();
+		cPlayerActionMain(ai::iActorInterface<cPlayer> *agent);
 		virtual ~cPlayerActionMain();
 
 		// override
-		virtual void Start(ai::cAction *prevAction) override;
-		virtual void Resume(ai::cAction *prevAction) override;
-		virtual void End() override;
 		virtual bool ActionThrough(const float deltaSeconds) override;
 		virtual bool ActionExecute(const float deltaSeconds) override;
 		virtual bool MessageProccess(const ai::sMsg &msg) override;
