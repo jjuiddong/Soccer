@@ -6,6 +6,8 @@
 //
 #pragma once
 
+#include "halfformation.h"
+
 
 namespace soccer
 {
@@ -26,6 +28,7 @@ namespace soccer
 
 	public:
 		vector<cPlayer*> m_players;
+		cHalfFormation m_formation;
 	};
 
 }

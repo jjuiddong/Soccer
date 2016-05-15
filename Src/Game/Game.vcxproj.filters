@@ -21,6 +21,7 @@
     <ClCompile Include="actionTeam\teamkickoffaction.cpp">
       <Filter>actionTeam</Filter>
     </ClCompile>
+    <ClCompile Include="halfformation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -44,6 +45,7 @@
     <ClInclude Include="actionTeam\teamkickoffaction.h">
       <Filter>actionTeam</Filter>
     </ClInclude>
+    <ClInclude Include="halfformation.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="actionTeam">

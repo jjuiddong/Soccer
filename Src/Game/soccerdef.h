@@ -18,9 +18,7 @@ namespace soccer
 	struct sPlayerData
 	{
 		POSITION::TYPE m_position;
-
+		Vector2 location;
 	};
 
-
 }
-

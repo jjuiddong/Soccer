@@ -57,6 +57,8 @@ bool cTeam::Init(graphic::cRenderer &renderer)
 // 		m_players[i]->m_ai.StartAction();
 // 	}
 
+	m_formation.Read("../media/formation.txt");
+
  	cTeamKickoffAction *kickoffAction = new cTeamKickoffAction(this);
  	PushAction(kickoffAction);
 
