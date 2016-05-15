@@ -27,7 +27,7 @@ bool cHalfFormation::Read(const string &fileName)
 
 	int idx = 0;
 	char buffer[128];
-	while (ifs.getline(buffer, sizeof(buffer)) && (idx < 11))
+	while (ifs.getline(buffer, sizeof(buffer)) && (idx < PLAYER_COUNT))
 	{
 		stringstream ss(buffer);
 		string str1, str2, str3;
@@ -66,7 +66,7 @@ bool cHalfFormation::Write(const string &fileName)
 	if (!ofs.is_open())
 		return false;
 
-	for (int i = 0; i < 11; ++i)
+	for (int i = 0; i < PLAYER_COUNT; ++i)
 	{
 		ofs << m_loc[i].x << ", " << m_loc[i].y << endl;
 	}
@@ -74,3 +74,42 @@ bool cHalfFormation::Write(const string &fileName)
 	return true;
 }
 
+
+// 선수의 위치를 리턴한다.
+//
+//     +Y axis (away team)
+//       -----------|   |------------
+//      |        |                 |          |
+//      |         ------------           |
+//      |                                      |
+//      |                   (0,0)           |
+//       ------------|------------> +X axis
+//      |                                      |
+//      |                                      |
+//      |         ------------           |
+//      |        |                 |          |
+//       -----------|   |------------
+//     -Y axis (home team)
+//
+void cHalfFormation::GetPlayerLocation(const MATCH::TYPE match, const cField &field, OUT vector<Vector2> &out)
+{
+	out.reserve(PLAYER_COUNT);
+
+	for (int i = 0; i < PLAYER_COUNT; ++i)
+	{
+		Vector2 loc;
+		loc.x = m_loc[i].x * field.m_width * 0.5f;
+		loc.y = field.m_height * 0.5f - (m_loc[i].y * field.m_height * 0.5f);
+
+		// home
+		if (match == MATCH::HOME)
+		{
+			loc.y = -loc.y;
+		}
+		else
+		{ // away
+		}
+
+		out.push_back(loc);
+	}
+}

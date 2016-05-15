@@ -22,6 +22,8 @@
       <Filter>actionTeam</Filter>
     </ClCompile>
     <ClCompile Include="halfformation.cpp" />
+    <ClCompile Include="halffield.cpp" />
+    <ClCompile Include="formationsetting.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -46,6 +48,8 @@
       <Filter>actionTeam</Filter>
     </ClInclude>
     <ClInclude Include="halfformation.h" />
+    <ClInclude Include="halffield.h" />
+    <ClInclude Include="formationsetting.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="actionTeam">

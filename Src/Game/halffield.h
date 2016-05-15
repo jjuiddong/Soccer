@@ -1,21 +1,12 @@
 //
-// 2016-04-30, jjuiddong
-// 축구장 객체
+// 2016-05-15, jjuiddong 
 //
-//           /--------------------------/
-//      /|/                  /                /|/
-//     |/  home       /        away |/
-//    /                  /                   /
-//  /-------------------------/
-//   -z                0              +z
+// 필드의 반을 출력하는 클래스
+// 포메이션 설정용이다.
 //
 //
 //      +Z axis (away team)
-//       -----------|   |------------
-//      |        |                 |          |
-//      |         ------------           |
-//      |                                      |
-//      |                   (0,0)           |
+//                         (0,0)           
 //       ------------|------------> +X axis
 //      |                                      |
 //      |                                      |
@@ -30,18 +21,18 @@
 namespace soccer
 {
 
-	class cField
+	class cHalfField
 	{
 	public:
-		cField();
-		virtual ~cField();
-
+		cHalfField();
+		virtual ~cHalfField();
+		
 		bool Init(graphic::cRenderer &renderer);
 		void Render(graphic::cRenderer &renderer);
 
 
 	public:
-		enum {LINE_SIZE = 17 ,};
+		enum { LINE_SIZE = 11, };
 		graphic::cLine m_lines[LINE_SIZE];
 		graphic::cCircleLine m_circle;
 		float m_width;

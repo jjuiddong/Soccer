@@ -153,7 +153,9 @@
     <ClCompile Include="actionTeam\teamkickoffaction.cpp" />
     <ClCompile Include="ball.cpp" />
     <ClCompile Include="field.cpp" />
+    <ClCompile Include="formationsetting.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="halffield.cpp" />
     <ClCompile Include="halfformation.cpp" />
     <ClCompile Include="match.cpp" />
     <ClCompile Include="player.cpp" />
@@ -187,6 +189,8 @@
     <ClInclude Include="actionTeam\teamkickoffaction.h" />
     <ClInclude Include="ball.h" />
     <ClInclude Include="field.h" />
+    <ClInclude Include="formationsetting.h" />
+    <ClInclude Include="halffield.h" />
     <ClInclude Include="halfformation.h" />
     <ClInclude Include="match.h" />
     <ClInclude Include="player.h" />

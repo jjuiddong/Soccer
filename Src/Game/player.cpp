@@ -26,7 +26,7 @@ bool cPlayer::Init(graphic::cRenderer &renderer, const sPlayerData &data)
 	m_data = data;
 
 	m_model.Create(renderer, "cube.dat");
-	const float scale = 0.1f;
+	const float scale = data.scale;
 	Matrix44 tm;
 	tm.SetScale(Vector3(scale, scale, scale));
 	m_model.SetTransform(tm);

@@ -22,7 +22,7 @@ namespace soccer
 
 	public:
 		cField m_field;
-// 		cReferee m_referee;
+		//cReferee m_referee;
  		cTeam m_teams[2]; // home, away team
 		cBall m_ball;
 	};

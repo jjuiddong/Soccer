@@ -12,4 +12,7 @@
 
 #include "soccerdef.h"
 #include "soccerai.h"
+#include "match.h"
 
+namespace soccer { class cMatch; }
+extern soccer::cMatch *g_match;

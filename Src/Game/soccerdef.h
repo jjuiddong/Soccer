@@ -15,10 +15,20 @@ namespace soccer
 	}
 
 
+	namespace MATCH
+	{
+		enum TYPE {
+			HOME,
+			AWAY,
+		};
+	}
+
+
 	struct sPlayerData
 	{
-		POSITION::TYPE m_position;
+		POSITION::TYPE position;
 		Vector2 location;
+		float scale;
 	};
 
 }

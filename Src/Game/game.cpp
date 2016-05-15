@@ -1,6 +1,7 @@
 
 #include "stdafx.h"
 #include "match.h"
+#include "formationsetting.h"
 
 using namespace graphic;
 
@@ -18,11 +19,17 @@ public:
 	virtual void MessageProc(UINT message, WPARAM wParam, LPARAM lParam) override;
 
 
+protected:
+	void ToggleFormationSetting();
+
+
 private:
 	graphic::cCube2 m_cube;
 	graphic::cModel m_model;
 	soccer::cMatch m_match;
-
+	soccer::cFormationSetting m_formationSetting;
+	
+	bool m_toggleFormationSetting;
 	bool m_dbgPrint;
 	string m_filePath;
 	POINT m_curPos;
@@ -33,13 +40,18 @@ private:
 };
 
 INIT_FRAMEWORK(cViewer);
+soccer::cMatch *g_match = NULL;
+
 
 
 const int WINSIZE_X = 800;		//초기 윈도우 가로 크기
 const int WINSIZE_Y = 600;	//초기 윈도우 세로 크기
 cViewer::cViewer() 
 	: m_model(0)
+	, m_toggleFormationSetting(false)
 {
+	g_match = &m_match; // global value setting
+
 	m_windowName = L"Soccer";
 	//const RECT r = { 0, 0, 1024, 768 };
 	const RECT r = { 0, 0, WINSIZE_X, WINSIZE_Y };
@@ -50,6 +62,7 @@ cViewer::cViewer()
 	m_LButtonDown = false;
 	m_RButtonDown = false;
 	m_MButtonDown = false;
+
 }
 
 cViewer::~cViewer()
@@ -91,6 +104,8 @@ bool cViewer::OnInit()
 	m_model.SetTransform(tm);
 
 	m_match.Init(m_renderer);
+	m_formationSetting.Init(m_renderer);
+	ToggleFormationSetting();
 
 	return true;
 }
@@ -100,6 +115,7 @@ void cViewer::OnUpdate(const float deltaSeconds)
 {
 	ai::Loop(deltaSeconds);
 	m_match.Update(deltaSeconds);
+	m_formationSetting.Update(deltaSeconds);
 }
 
 
@@ -112,13 +128,20 @@ void cViewer::OnRender(const float deltaSeconds)
 		GetMainLight().Bind(m_renderer, 0);
 
 		//m_renderer.RenderGrid();
-		//m_renderer.RenderAxis();
+		m_renderer.RenderAxis();
 
 		//m_cube.Render(m_renderer, Matrix44::Identity);
 		//m_model.Render(m_renderer, Matrix44::Identity);
-		m_match.Render(m_renderer);
-		m_renderer.RenderFPS();
+		if (m_toggleFormationSetting)
+		{
+			m_formationSetting.Render(m_renderer);
+		}
+		else
+		{
+			m_match.Render(m_renderer);
+		}
 
+		m_renderer.RenderFPS();
 		m_renderer.EndScene();
 		m_renderer.Present();
 	}
@@ -127,6 +150,20 @@ void cViewer::OnRender(const float deltaSeconds)
 
 void cViewer::OnShutdown()
 {
+}
+
+
+void cViewer::ToggleFormationSetting()
+{
+	m_toggleFormationSetting = !m_toggleFormationSetting;
+	if (m_toggleFormationSetting)
+	{
+		GetMainCamera()->SetCamera(Vector3(0, 80, -80), Vector3(0, 24, -50), Vector3(0, 1, 0));
+	}
+	else
+	{
+		GetMainCamera()->SetCamera(Vector3(100, 80, -30), Vector3(0, 0, 0), Vector3(0, 1, 0));
+	}
 }
 
 
@@ -152,6 +189,12 @@ void cViewer::MessageProc(UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_KEYDOWN:
 		switch (wParam)
 		{
+		case '1':
+		{
+			ToggleFormationSetting();
+		}
+		break;
+
 		case VK_F5: // Refresh
 		{
 			if (m_filePath.empty())
