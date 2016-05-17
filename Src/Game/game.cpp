@@ -2,9 +2,10 @@
 #include "stdafx.h"
 #include "match.h"
 #include "formationsetting.h"
+#include "strategyscene.h"
+
 
 using namespace graphic;
-
 
 class cViewer : public framework::cGameMain
 {
@@ -27,7 +28,7 @@ private:
 	graphic::cCube2 m_cube;
 	graphic::cModel m_model;
 	soccer::cMatch m_match;
-	soccer::cFormationSetting m_formationSetting;
+	soccer::cStrategyScene m_strategyScene;
 	
 	bool m_toggleFormationSetting;
 	bool m_dbgPrint;
@@ -41,8 +42,6 @@ private:
 
 INIT_FRAMEWORK(cViewer);
 soccer::cMatch *g_match = NULL;
-
-
 
 const int WINSIZE_X = 800;		//초기 윈도우 가로 크기
 const int WINSIZE_Y = 600;	//초기 윈도우 세로 크기
@@ -62,7 +61,6 @@ cViewer::cViewer()
 	m_LButtonDown = false;
 	m_RButtonDown = false;
 	m_MButtonDown = false;
-
 }
 
 cViewer::~cViewer()
@@ -104,8 +102,9 @@ bool cViewer::OnInit()
 	m_model.SetTransform(tm);
 
 	m_match.Init(m_renderer);
-	m_formationSetting.Init(m_renderer);
 	ToggleFormationSetting();
+	m_strategyScene.Init(m_renderer);
+	
 
 	return true;
 }
@@ -115,7 +114,9 @@ void cViewer::OnUpdate(const float deltaSeconds)
 {
 	ai::Loop(deltaSeconds);
 	m_match.Update(deltaSeconds);
-	m_formationSetting.Update(deltaSeconds);
+	
+	if (m_toggleFormationSetting)
+		m_strategyScene.Update(deltaSeconds);
 }
 
 
@@ -134,7 +135,7 @@ void cViewer::OnRender(const float deltaSeconds)
 		//m_model.Render(m_renderer, Matrix44::Identity);
 		if (m_toggleFormationSetting)
 		{
-			m_formationSetting.Render(m_renderer);
+			m_strategyScene.Render(m_renderer, Matrix44::Identity);
 		}
 		else
 		{
@@ -169,6 +170,9 @@ void cViewer::ToggleFormationSetting()
 
 void cViewer::MessageProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
+	if (m_toggleFormationSetting)
+		m_strategyScene.MessageProc(message, wParam, lParam);
+
 	switch (message)
 	{
 	case WM_MOUSEWHEEL:

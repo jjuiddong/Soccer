@@ -24,6 +24,7 @@
     <ClCompile Include="halfformation.cpp" />
     <ClCompile Include="halffield.cpp" />
     <ClCompile Include="formationsetting.cpp" />
+    <ClCompile Include="strategyscene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -50,6 +51,7 @@
     <ClInclude Include="halfformation.h" />
     <ClInclude Include="halffield.h" />
     <ClInclude Include="formationsetting.h" />
+    <ClInclude Include="strategyscene.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="actionTeam">
