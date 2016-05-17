@@ -113,3 +113,35 @@ void cHalfFormation::GetPlayerLocation(const MATCH::TYPE match, const cField &fi
 		out.push_back(loc);
 	}
 }
+
+
+// 필드상의 플레어의 위치를 HalfFormation 좌표계로 저장한다.
+void cHalfFormation::SetPlayerLocation(const cField &field, const vector<Vector3> &locs)
+{
+	SetPlayerLocation(field.m_width, field.m_height, locs);
+}
+
+
+void cHalfFormation::SetPlayerLocation(const cHalfField &field, const vector<Vector3> &locs)
+{
+	SetPlayerLocation(field.m_width, field.m_height, locs);
+}
+
+
+void cHalfFormation::SetPlayerLocation(const float fieldWidth, const float fieldHeight, const vector<Vector3> &locs)
+{
+	const float hw = fieldWidth * 0.5f;
+	const float hh = fieldHeight * 0.5f;
+	for (int i = 0; i < (int)locs.size(); ++i)
+	{
+		Vector2 loc;
+		loc.x = locs[i].x  / hw;
+		loc.y = (hh + locs[i].z) / hh;
+		loc.x = max(-1, loc.x);
+		loc.y = max(0, loc.y);
+		loc.x = min(1, loc.x);
+		loc.y = min(1, loc.y);
+
+		m_loc[i] = loc;
+	}
+}

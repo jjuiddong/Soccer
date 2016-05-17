@@ -16,12 +16,12 @@ cFormationSetting::~cFormationSetting()
 }
 
 
-bool cFormationSetting::Init(graphic::cRenderer &renderer)
+bool cFormationSetting::Init(graphic::cRenderer &renderer, const string &fileName)
 {
 	m_field.Init(renderer);
 
 	vector<Vector2> locs;
-	m_formation.Read("../media/formation.txt");
+	m_formation.Read(fileName);
 	m_formation.GetPlayerLocation(MATCH::HOME, g_match->m_field, locs);
 
 	m_players.reserve(11);
@@ -63,6 +63,17 @@ void cFormationSetting::Render(graphic::cRenderer &renderer)
 	{
 		p->Render(renderer, Matrix44::Identity);
 	}
+}
+
+
+void cFormationSetting::WriteFormation(const string &fileName)
+{
+	vector<Vector3> locs(m_players.size());
+	for (int i = 0; i < (int)m_players.size(); ++i)
+		locs[i] = m_players[i]->m_model.GetTransform().GetPosition();
+
+	m_formation.SetPlayerLocation(m_field, locs);
+	m_formation.Write(fileName);
 }
 
 

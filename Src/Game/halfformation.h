@@ -16,6 +16,7 @@
 #pragma once
 
 #include "field.h"
+#include "halffield.h"
 
 
 namespace soccer
@@ -30,6 +31,9 @@ namespace soccer
 		bool Read(const string &fileName);
 		bool Write(const string &fileName);
 		void GetPlayerLocation(const MATCH::TYPE match, const cField &field, OUT vector<Vector2> &out);
+		void SetPlayerLocation(const cField &field, const vector<Vector3> &locs);
+		void SetPlayerLocation(const cHalfField &field, const vector<Vector3> &locs);
+		void SetPlayerLocation(const float fieldWidth, const float fieldHeight, const vector<Vector3> &locs);
 
 
 	public:

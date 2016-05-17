@@ -25,6 +25,10 @@ namespace soccer
 
 	public:
 		soccer::cFormationSetting m_formationSetting;
+		graphic::cGrid2 m_ground; // picking 용 오브젝트
+		bool m_isSelectPlayer;
+		cPlayer *m_selectPlayer;
+		const string m_formationFileName = "../media/formation.txt";
 	};
 
 }

@@ -20,9 +20,10 @@ namespace soccer
 		cFormationSetting();
 		virtual ~cFormationSetting();
 
-		bool Init(graphic::cRenderer &renderer);
+		bool Init(graphic::cRenderer &renderer, const string &fileName);
 		bool Update(const float deltaSeconds);
 		void Render(graphic::cRenderer &renderer);
+		void WriteFormation(const string &fileName);
 		void Clear();
 
 
