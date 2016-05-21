@@ -10,6 +10,7 @@
 namespace TEAM_AI_MSG {
 	enum TYPE {
 		KICKOFF,
+		PLAYGAME,
 
 		MAX,
 	};
@@ -19,7 +20,8 @@ namespace TEAM_AI_MSG {
 namespace PLAYER_AI_MSG {
 	enum  TYPE {
 		KICKOFF = TEAM_AI_MSG::MAX,
-
+		PLAYGAME,
+		FORMATION_MOVE,
 	};
 
 }
@@ -28,8 +30,11 @@ namespace PLAYER_AI_MSG {
 
 // team
 #include "actionTeam/teamkickoffaction.h"
+#include "actionTeam/teamplaygameaction.h"
 
 
 // player
 #include "actionPlayer/playeractionmain.h"
 #include "actionPlayer/playerkickoffaction.h"
+#include "actionPlayer/playerformationmoveaction.h"
+
