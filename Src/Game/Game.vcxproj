@@ -149,10 +149,14 @@
   <ItemGroup>
     <ClCompile Include="actionPlayer\blankaction.cpp" />
     <ClCompile Include="actionPlayer\playeractionmain.cpp" />
+    <ClCompile Include="actionPlayer\playerformationmoveaction.cpp" />
     <ClCompile Include="actionPlayer\playerkickoffaction.cpp" />
     <ClCompile Include="actionTeam\teamkickoffaction.cpp" />
+    <ClCompile Include="actionTeam\teamplaygameaction.cpp" />
     <ClCompile Include="ball.cpp" />
     <ClCompile Include="field.cpp" />
+    <ClCompile Include="fieldscene.cpp" />
+    <ClCompile Include="formationmovescene.cpp" />
     <ClCompile Include="formationsetting.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="halffield.cpp" />
@@ -186,10 +190,14 @@
   <ItemGroup>
     <ClInclude Include="actionPlayer\blankaction.h" />
     <ClInclude Include="actionPlayer\playeractionmain.h" />
+    <ClInclude Include="actionPlayer\playerformationmoveaction.h" />
     <ClInclude Include="actionPlayer\playerkickoffaction.h" />
     <ClInclude Include="actionTeam\teamkickoffaction.h" />
+    <ClInclude Include="actionTeam\teamplaygameaction.h" />
     <ClInclude Include="ball.h" />
     <ClInclude Include="field.h" />
+    <ClInclude Include="fieldscene.h" />
+    <ClInclude Include="formationmovescene.h" />
     <ClInclude Include="formationsetting.h" />
     <ClInclude Include="halffield.h" />
     <ClInclude Include="halfformation.h" />

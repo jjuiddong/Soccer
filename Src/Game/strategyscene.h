@@ -11,7 +11,7 @@
 namespace soccer
 {
 
-	class cStrategyScene : public framework::cWindow
+	class cStrategyScene : public framework::cScene
 	{
 	public:
 		cStrategyScene();
@@ -21,6 +21,7 @@ namespace soccer
 		virtual bool Update(const float deltaSeconds) override;
 		virtual void Render(graphic::cRenderer &renderer, const Matrix44 &parentTm) override;
 		virtual bool MessageProc(UINT message, WPARAM wParam, LPARAM lParam) override;
+		virtual void Show() override;
 
 
 	public:

@@ -16,3 +16,12 @@
 
 namespace soccer { class cMatch; }
 extern soccer::cMatch *g_match;
+
+
+namespace SCENE {
+	enum TYPE {
+		FIELD,
+		STRATEGY,
+		FORMATION,
+	};
+}

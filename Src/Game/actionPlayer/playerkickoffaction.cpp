@@ -7,7 +7,7 @@ using namespace soccer;
 
 
 cPlayerKickoffAction::cPlayerKickoffAction(ai::iActorInterface<cPlayer> *agent)
-	: ai::cAction<cPlayer>(agent, "playerkickoffaction")
+	: ai::cAction<cPlayer>(agent, "PlayerKickoffAction")
 {
 	Vector2 dest = agent->m_ptr->m_data.location;
 
@@ -28,7 +28,7 @@ bool cPlayerKickoffAction::ActionThrough(const float deltaSeconds)
 
 bool cPlayerKickoffAction::ActionExecute(const float deltaSeconds)
 {
-	return true;
+	return false;
 }
 
 

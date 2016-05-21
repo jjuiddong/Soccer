@@ -7,7 +7,7 @@ using namespace framework;
 
 
 cStrategyScene::cStrategyScene()
-	: cWindow(NULL, 0, "strategyscene")
+	: cScene(SCENE::STRATEGY, "strategyscene")
 	, m_isSelectPlayer(false)
 	, m_selectPlayer(NULL)
 {
@@ -24,6 +24,14 @@ bool cStrategyScene::Init(graphic::cRenderer &renderer)
 	m_formationSetting.Init(renderer, m_formationFileName);
 	m_ground.Create(renderer, 10, 10, 20);
 	return true;
+}
+
+
+void cStrategyScene::Show()
+{
+	__super::Show();
+
+	graphic::GetMainCamera()->SetCamera(Vector3(0, 80, -80), Vector3(0, 24, -50), Vector3(0, 1, 0));
 }
 
 

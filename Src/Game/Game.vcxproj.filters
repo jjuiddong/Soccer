@@ -25,6 +25,14 @@
     <ClCompile Include="halffield.cpp" />
     <ClCompile Include="formationsetting.cpp" />
     <ClCompile Include="strategyscene.cpp" />
+    <ClCompile Include="formationmovescene.cpp" />
+    <ClCompile Include="fieldscene.cpp" />
+    <ClCompile Include="actionTeam\teamplaygameaction.cpp">
+      <Filter>actionTeam</Filter>
+    </ClCompile>
+    <ClCompile Include="actionPlayer\playerformationmoveaction.cpp">
+      <Filter>actionPlayer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -52,6 +60,14 @@
     <ClInclude Include="halffield.h" />
     <ClInclude Include="formationsetting.h" />
     <ClInclude Include="strategyscene.h" />
+    <ClInclude Include="formationmovescene.h" />
+    <ClInclude Include="fieldscene.h" />
+    <ClInclude Include="actionTeam\teamplaygameaction.h">
+      <Filter>actionTeam</Filter>
+    </ClInclude>
+    <ClInclude Include="actionPlayer\playerformationmoveaction.h">
+      <Filter>actionPlayer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="actionTeam">

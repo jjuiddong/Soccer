@@ -3,6 +3,8 @@
 #include "match.h"
 #include "formationsetting.h"
 #include "strategyscene.h"
+#include "fieldscene.h"
+#include "formationmovescene.h"
 
 
 using namespace graphic;
@@ -17,20 +19,13 @@ public:
 	virtual void OnUpdate(const float deltaSeconds) override;
 	virtual void OnRender(const float deltaSeconds) override;
 	virtual void OnShutdown() override;
-	virtual void MessageProc(UINT message, WPARAM wParam, LPARAM lParam) override;
-
-
-protected:
-	void ToggleFormationSetting();
+	virtual void OnMessageProc(UINT message, WPARAM wParam, LPARAM lParam) override;
 
 
 private:
 	graphic::cCube2 m_cube;
 	graphic::cModel m_model;
-	soccer::cMatch m_match;
-	soccer::cStrategyScene m_strategyScene;
 	
-	bool m_toggleFormationSetting;
 	bool m_dbgPrint;
 	string m_filePath;
 	POINT m_curPos;
@@ -47,10 +42,7 @@ const int WINSIZE_X = 800;		//초기 윈도우 가로 크기
 const int WINSIZE_Y = 600;	//초기 윈도우 세로 크기
 cViewer::cViewer() 
 	: m_model(0)
-	, m_toggleFormationSetting(false)
 {
-	g_match = &m_match; // global value setting
-
 	m_windowName = L"Soccer";
 	//const RECT r = { 0, 0, 1024, 768 };
 	const RECT r = { 0, 0, WINSIZE_X, WINSIZE_Y };
@@ -101,10 +93,23 @@ bool cViewer::OnInit()
 	tm.SetScale(Vector3(scale, scale, scale));
 	m_model.SetTransform(tm);
 
-	m_match.Init(m_renderer);
-	ToggleFormationSetting();
-	m_strategyScene.Init(m_renderer);
-	
+
+	// init scene
+	soccer::cFieldScene *fieldScene = new soccer::cFieldScene();
+	g_match = &fieldScene->m_match; // global value setting
+	fieldScene->Init(m_renderer);
+	InsertScene(fieldScene);
+
+	soccer::cStrategyScene *scene = new soccer::cStrategyScene();
+	scene->Init(m_renderer);
+	InsertScene(scene);
+
+	soccer::cFormationMoveScene *formationMoveScene = new soccer::cFormationMoveScene();
+	formationMoveScene->Init(m_renderer);
+	InsertScene(formationMoveScene);
+
+
+	ChangeScene(SCENE::FORMATION);
 
 	return true;
 }
@@ -113,39 +118,23 @@ bool cViewer::OnInit()
 void cViewer::OnUpdate(const float deltaSeconds)
 {
 	ai::Loop(deltaSeconds);
-	m_match.Update(deltaSeconds);
-	
-	if (m_toggleFormationSetting)
-		m_strategyScene.Update(deltaSeconds);
 }
 
 
 void cViewer::OnRender(const float deltaSeconds)
 {
-	if (m_renderer.ClearScene())
-	{
-		m_renderer.BeginScene();
+	m_renderer.BeginScene();
 
-		GetMainLight().Bind(m_renderer, 0);
+	GetMainLight().Bind(m_renderer, 0);
 
-		//m_renderer.RenderGrid();
-		m_renderer.RenderAxis();
+	//m_renderer.RenderGrid();
+	m_renderer.RenderAxis();
 
-		//m_cube.Render(m_renderer, Matrix44::Identity);
-		//m_model.Render(m_renderer, Matrix44::Identity);
-		if (m_toggleFormationSetting)
-		{
-			m_strategyScene.Render(m_renderer, Matrix44::Identity);
-		}
-		else
-		{
-			m_match.Render(m_renderer);
-		}
-
-		m_renderer.RenderFPS();
-		m_renderer.EndScene();
-		m_renderer.Present();
-	}
+	//m_cube.Render(m_renderer, Matrix44::Identity);
+	//m_model.Render(m_renderer, Matrix44::Identity);
+	m_renderer.RenderFPS();
+	m_renderer.EndScene();
+	m_renderer.Present();
 }
 
 
@@ -154,25 +143,8 @@ void cViewer::OnShutdown()
 }
 
 
-void cViewer::ToggleFormationSetting()
+void cViewer::OnMessageProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
-	m_toggleFormationSetting = !m_toggleFormationSetting;
-	if (m_toggleFormationSetting)
-	{
-		GetMainCamera()->SetCamera(Vector3(0, 80, -80), Vector3(0, 24, -50), Vector3(0, 1, 0));
-	}
-	else
-	{
-		GetMainCamera()->SetCamera(Vector3(100, 80, -30), Vector3(0, 0, 0), Vector3(0, 1, 0));
-	}
-}
-
-
-void cViewer::MessageProc(UINT message, WPARAM wParam, LPARAM lParam)
-{
-	if (m_toggleFormationSetting)
-		m_strategyScene.MessageProc(message, wParam, lParam);
-
 	switch (message)
 	{
 	case WM_MOUSEWHEEL:
@@ -193,11 +165,9 @@ void cViewer::MessageProc(UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_KEYDOWN:
 		switch (wParam)
 		{
-		case '1':
-		{
-			ToggleFormationSetting();
-		}
-		break;
+		case '1': ChangeScene(SCENE::FIELD); break;
+		case '2': ChangeScene(SCENE::STRATEGY); break;
+		case '3': ChangeScene(SCENE::FORMATION); break;
 
 		case VK_F5: // Refresh
 		{
