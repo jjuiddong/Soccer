@@ -33,6 +33,13 @@
     <ClCompile Include="actionPlayer\playerformationmoveaction.cpp">
       <Filter>actionPlayer</Filter>
     </ClCompile>
+    <ClCompile Include="formation.cpp" />
+    <ClCompile Include="actionTeam\teamoffenseaction.cpp">
+      <Filter>actionTeam</Filter>
+    </ClCompile>
+    <ClCompile Include="actionTeam\teamblankaction.cpp">
+      <Filter>actionTeam</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -67,6 +74,13 @@
     </ClInclude>
     <ClInclude Include="actionPlayer\playerformationmoveaction.h">
       <Filter>actionPlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="formation.h" />
+    <ClInclude Include="actionTeam\teamoffenseaction.h">
+      <Filter>actionTeam</Filter>
+    </ClInclude>
+    <ClInclude Include="actionTeam\teamblankaction.h">
+      <Filter>actionTeam</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

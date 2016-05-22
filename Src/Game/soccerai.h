@@ -31,10 +31,10 @@ namespace PLAYER_AI_MSG {
 // team
 #include "actionTeam/teamkickoffaction.h"
 #include "actionTeam/teamplaygameaction.h"
+#include "actionTeam/teamoffenseaction.h"
 
 
 // player
 #include "actionPlayer/playeractionmain.h"
 #include "actionPlayer/playerkickoffaction.h"
 #include "actionPlayer/playerformationmoveaction.h"
-

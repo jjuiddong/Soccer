@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "team.h"
 #include "player.h"
+#include "ball.h"
 #include "actionTeam/teamkickoffaction.h"
 
 using namespace soccer;
@@ -10,6 +11,7 @@ using namespace soccer;
 cTeam::cTeam()
 	: ai::cActor<cTeam>(this)
 	, ai::iActorInterface<cTeam>(this)
+	, m_ball(NULL)
 {
 }
 
@@ -19,13 +21,30 @@ cTeam::~cTeam()
 }
 
 
-bool cTeam::Init(graphic::cRenderer &renderer, const MATCH::TYPE match)
+bool cTeam::Init(graphic::cRenderer &renderer, const MATCH::TYPE match, cField &field, cBall &ball)
 {
+	m_ball = &ball;
 	m_match = match;
-	m_formation.Read("../media/formation.txt");
+	if (!m_halfFormation.Read("../media/formation.txt"))
+	{
+		dbg::ErrLog("Error!! Team Initialize, not found formation file\n");
+		return false;
+	}
+	
+	if (!m_formation.Init(match, field))
+	{
+		dbg::ErrLog("Error!! Team Initialize, init formaiton object error \n");
+		return false;
+	}
+
+	if (!m_formation.Read("../media/formation.txt"))
+	{
+		dbg::ErrLog("Error!! Team Initialize, init formaiton read error \n");
+		return false;
+	}
 
 	vector<Vector2> locs;
-	m_formation.GetPlayerLocation(match, g_match->m_field, locs);
+	m_halfFormation.GetPlayerLocation(match, field, locs);
 
 	m_players.reserve(11);
 	for (int i = 0; i < 11; ++i)
@@ -36,7 +55,7 @@ bool cTeam::Init(graphic::cRenderer &renderer, const MATCH::TYPE match)
 		data.location = locs[i];
 		data.scale = 0.1f;
 
-		p->Init(renderer, data);
+		p->Init(renderer, data, *this);
 		AddActor(&p->m_ai);
 		m_players.push_back(p);
 	}
@@ -56,6 +75,11 @@ bool cTeam::Update(const float deltaSeconds)
 	{
 		p->Update(deltaSeconds);
 	}
+
+	// 볼 위치에 따라, 선수들의 위치를 계산한다.
+	m_formation.Update(deltaSeconds, m_ball->GetTransform().GetPosition());
+	for (int i = 0; i < cFormation::PLAYER_COUNT; ++i)
+		m_players[i]->m_movFieldLoc = m_formation.FormationToField(m_formation.m_loc[i]);
 
 	return true;
 }

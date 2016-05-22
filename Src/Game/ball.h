@@ -16,13 +16,13 @@ namespace soccer
 
 		bool Init(graphic::cRenderer &renderer);
 		virtual bool Update(const float deltaSeconds) override;
-		virtual void Render(graphic::cRenderer &renderer, const Matrix44 &tm = Matrix44::Identity) override;
+		//virtual void Render(graphic::cRenderer &renderer, const Matrix44 &tm = Matrix44::Identity) override;
 
 		virtual void Clear();
 
 
 	public:
-		graphic::cSphere m_sphere;
+		graphic::cSphere *m_sphere;
 	};
 
 }

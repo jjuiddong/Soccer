@@ -5,38 +5,41 @@
 
 using namespace soccer;
 
-cBall::cBall()
+cBall::cBall() :
+	m_sphere(NULL)
 {
 }
 
 cBall::~cBall()
 {
+	Clear();
 }
 
 
 bool cBall::Init(graphic::cRenderer &renderer)
 {
-	m_sphere.Create(renderer, 0.5f, 10, 10);
+	m_sphere = new graphic::cSphere();
+	m_sphere->Create(renderer, 0.5f, 10, 10);
+	InsertChild(m_sphere);
 	return true;
 }
 
 
 bool cBall::Update(const float deltaSeconds)
 {
-	graphic::cCharacter::Update(deltaSeconds);
+	__super::Update(deltaSeconds);
 	return true;
 }
 
 
-void cBall::Render(graphic::cRenderer &renderer, const Matrix44 &tm)
-{
-	graphic::cCharacter::Render(renderer, tm);
-	m_sphere.Render(renderer, tm);
-}
+// void cBall::Render(graphic::cRenderer &renderer, const Matrix44 &tm)
+// {
+// 	graphic::cCharacter::Render(renderer, tm);
+// 	m_sphere.Render(renderer, tm);
+// }
 
 
 void cBall::Clear()
 {
-	graphic::cCharacter::Clear();
-
+	__super::Clear();
 }

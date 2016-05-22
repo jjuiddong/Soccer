@@ -240,3 +240,5 @@ Src/Game/errlog.txt
 
 Src/Game.VC.db
 *.db
+log.txt
+*/formation.txt

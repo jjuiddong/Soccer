@@ -4,6 +4,8 @@
 //
 #pragma once
 
+#include "formation.h"
+
 
 namespace soccer
 {
@@ -25,6 +27,9 @@ namespace soccer
 		cField m_field;
 		cTeam m_team; // home team
 		cBall m_ball;
+		graphic::cGrid2 m_ground; // picking 용 오브젝트
+		
+		bool m_isBallMove;
 	};
 
 }

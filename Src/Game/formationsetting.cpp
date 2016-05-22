@@ -33,7 +33,7 @@ bool cFormationSetting::Init(graphic::cRenderer &renderer, const string &fileNam
 		data.location = locs[i];
 		data.scale = 0.3f;
 
-		p->Init(renderer, data);
+		p->Init(renderer, data, m_blankTeam);
 
 		ai::cMove<cPlayer> *mov = new ai::cMove<cPlayer>(p, Vector3(locs[i].x, 0, locs[i].y), 50.f);
 		p->m_ai.PushAction(mov);

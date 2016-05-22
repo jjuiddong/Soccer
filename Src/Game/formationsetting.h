@@ -31,6 +31,7 @@ namespace soccer
 		cHalfField m_field;
 		cHalfFormation m_formation;
 		vector<cPlayer*> m_players;
+		cTeam m_blankTeam;
 	};
 
 }

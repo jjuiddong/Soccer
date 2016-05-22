@@ -27,7 +27,7 @@ namespace soccer
 	struct sPlayerData
 	{
 		POSITION::TYPE position;
-		Vector2 location;
+		Vector2 location; // field 좌표계, 포메이션 위치
 		float scale;
 	};
 

@@ -2,7 +2,8 @@
 // 2016-05-15, jjuiddong
 //
 // 포메이션을 정의하는 클래스
-//    
+// 
+// HalfFormation 좌표계
 //    y axis
 // 1  |---------------------|
 //     |                               |
@@ -38,7 +39,7 @@ namespace soccer
 
 	public:
 		enum { PLAYER_COUNT = 11 };
-		Vector2 m_loc[PLAYER_COUNT];
+		Vector2 m_loc[PLAYER_COUNT]; // halfformation 좌표계
 	};
 
 }
