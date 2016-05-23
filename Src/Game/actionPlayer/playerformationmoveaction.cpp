@@ -10,7 +10,7 @@ cPlayerFormationMoveAction::cPlayerFormationMoveAction(ai::iActorInterface<cPlay
 	: ai::cAction<cPlayer>(agent, "PlayerFormationMoveAction")
 	, m_incTime(0)
 	, m_rotateTime(0)
-	, m_speed(10.f)
+	, m_speed(30.f)
 	, m_rotateInterval(0.3f)
 	, m_distance(0)
 {
